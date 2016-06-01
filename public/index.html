@@ -1,0 +1,72 @@
+<!doctype html>
+	<html lang="sk">
+		<head>
+			<meta charset="utf-8" />
+			<title></title>
+			<!--[if IE]>
+			<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+			<![endif]-->
+			<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0-rc.2/angular.min.js"></script>
+			<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0-rc.2/angular-route.min.js"></script>
+			<base href="http://127.0.0.1:3000/">
+		</head>
+		<body ng-app="couch" ng-controller="HlCtrl as $ctrl">
+			<ng-view></ng-view>
+			<script>
+			var app = angular.module('couch', ['ngRoute']);
+
+			app.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
+				$routeProvider.
+					when('/', {
+						template: '<hlmenu></hlmenu>'
+					}).
+					otherwise({
+						redirectTo: '/'
+					});
+
+					$locationProvider.html5Mode(true).hashPrefix('*');
+			}]);
+
+			app.component('hlmenu', {
+				template: ` <button ng-click="$ctrl.domov()">Domov</button>
+							<button ng-click="$ctrl.chod('/vloz')">Vloz</button>
+							<button ng-click="$ctrl.zmaz()">Zmaz</button>
+							<button ng-click="$ctrl.update()">Update</button>`,
+				controller: function($http, $location) {
+					var _this = this;
+
+					_this.domov = function() {
+						$http.get('http://127.0.0.1:3000/domov').then(function(data) {
+							console.log(data.data);
+						})
+					}
+
+					_this.vloz = function() {
+						$http.post('http://127.0.0.1:3000/vloz/', {nazov: "dajaky nazov"}).then(function(data) {
+							console.log(data.data);
+						})
+					}
+
+					_this.zmaz = function() {
+						$http.get('http://127.0.0.1:3000/zmaz').then(function(data) {
+							console.log(data.data);
+						})
+					}
+
+					_this.update = function() {
+						$http.get('http://127.0.0.1:3000/update').then(function(data) {
+							console.log(data.data);
+						})
+					}
+
+					_this.chod = function(kam) {
+						$location.path(kam)
+					}
+				}
+			});
+
+			app.controller('HlCtrl', ['$scope', '$http', function($scope, $http) {
+			}]);
+			</script>
+		</body>
+	</html>
