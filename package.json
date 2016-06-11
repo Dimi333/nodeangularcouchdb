@@ -1,7 +1,21 @@
 {
-  "name": "ahojsvet",
-  "description": "my first project",
-  "version": "1.0",
+  "name": "pripomienky",
+  "version": "1.0.0",
+  "description": "pripomienky nodejs, angular a couchdb",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Dimi333/nodeangularcouchdb"
+  },
+  "author": "Dimi3",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Dimi333/nodeangularcouchdb/issues"
+  },
   "dependencies": {
     "body-parser": "^1.15.1",
     "express": "^4.13.4",

@@ -1,6 +1,6 @@
 var express = require("express");
 var bodyParser = require("body-parser");
-var mylib = require("nano")("http://localhost:5984").use("mylibrary")
+var mylib = require("nano")("http://dimi3:dunajska12@localhost:5984").use("mylibrary")
 var app = express();
 
 /*
@@ -35,7 +35,7 @@ app.get('/domov', function (req, res) {
 
 app.post('/vloz', function (req, res) {
 	//vlozenie objektu
-	/*var book = {
+	var book = {
         Title: "A Brief History of Time",
         Author: "Stephen Hawking",
         Type: "Paperback – Unabridged, September 1, 1998",
@@ -50,8 +50,8 @@ app.post('/vloz', function (req, res) {
             res.writeHead(200, { "Content-Type": "text/plain" });
             res.end("Book inserted. Response: " + JSON.stringify(body, null, 4) + "\n");
         }
-    });*/
-	 res.send(req.body.nazov);
+    });
+	 //res.send(req.body.nazov);
 });
 
 app.get('/update', function (req, res) {
